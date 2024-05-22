@@ -190,6 +190,9 @@ ENV DOMAIN=
 # Name of your company, for support purposes.
 ENV COMPANY=
 
+# Site root.
+ENV SITE_ROOT="/"
+
 # Memcached hostname:port.
 ENV MEMCACHED_SERVER=memcached:11211
 

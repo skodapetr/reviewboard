@@ -118,7 +118,7 @@ ROOT_URLCONF = 'djblets.urls.root'
 REVIEWBOARD_ROOT = os.path.abspath(os.path.split(__file__)[0])
 
 # where is the site on your server ? - add the trailing slash.
-SITE_ROOT = '/'
+SITE_ROOT = os.environ.get('SITE_ROOT', '/')
 
 # This isn't needed for locating static media files in Review Board (as we
 # no longer use FileSystemFinder), but it is required for extension
