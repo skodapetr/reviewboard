@@ -96,7 +96,7 @@ services:
       # The Postgres admin password.
       #
       # CHANGEME: Use a strong password!
-      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_PASSWORD=${DATABASE_ROOT_PASSWORD}
 
       # The name of the Postgres database storing Review Board content.
       - POSTGRES_DB=reviewboard
@@ -107,7 +107,7 @@ services:
       # The Postgres password for Review Board.
       #
       # CHANGEME: Use a strong password!
-      - POSTGRES_RB_PASSWORD=reviewboard123
+      - POSTGRES_RB_PASSWORD=${DATABASE_RB_PASSWORD}
 
     volumes:
       - db_data:/var/lib/postgresql/data/
@@ -133,7 +133,7 @@ services:
       #
       # CHANGEME: Set this to a suitable amount for your server. We recommend
       #           at least 2GB in production (2048).
-      - -m 128
+      - -m 256
 
 
   # The backend Review Board server.
@@ -153,16 +153,18 @@ services:
       #
       # CHANGEME: You should use your actual name here. It's used for
       #           internal state and your in-app support page.
-      - COMPANY=Docker Compose Test
+      - COMPANY=${COMPANY}
+
+      - SITE_ROOT=${SITE_ROOT:-/}
 
       # CHANGEME: Set this to the database username above.
       - DATABASE_USERNAME=reviewboard
 
       # CHANGEME: Set this to the database password above.
-      - DATABASE_PASSWORD=reviewboard123
+      - DATABASE_PASSWORD=${DATABASE_RB_PASSWORD}
 
       # CHANGEME: Set this to your accessible domain name.
-      - DOMAIN=localhost
+      - DOMAIN=${DOMAIN}
 
     volumes:
       - sitedir:/site
@@ -182,7 +184,7 @@ services:
 
     environment:
       # CHANGEME: Set this to your accessible domain name above.
-      - NGINX_HOST=localhost
+      - NGINX_HOST=${DOMAIN}
 
       # The public port used to access this instance.
       #

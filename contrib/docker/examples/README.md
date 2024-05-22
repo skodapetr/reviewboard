@@ -57,6 +57,14 @@ Instructions
 
 7. Access `http://<hostname>/`
 
+Alternatively you can use .env file with following content:
+```
+COMPANY=
+DOMAIN=
+SITE_ROOT=
+DATABASE_ROOT_PASSWORD=
+DATABASE_RB_PASSWORD=
+```
 
 Data Storage
 ------------
